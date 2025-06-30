@@ -30,7 +30,7 @@ Exemplos:
 
 ## 1. Buscar nome da empresa (segmento Q)
 ```bash
-node index.js --search "Transportadora"
+node index.js --search "ZENVIA"
 ```
 
 ## 2. Buscar nome da empresa (segmento Q)
