@@ -21,6 +21,8 @@ Uso: index.js [options]
       --search, --searchCompany    nome da empresa a ser buscado        [string]
       --exportJson, --export-json  exporta as empresas e endereços do segmento Q
                                     para JSON                          [boolean]
+      --exportXlsx, --export-xlsx  exporta as empresas e endereços do segmento Q
+                                    para XLSX                          [boolean]
 
 Exemplos:
   node index.js -f 21 -t 34 -s q
