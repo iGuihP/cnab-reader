@@ -2,11 +2,9 @@
 
 Ferramenta de linha de comando (CLI) para leitura, filtragem e exportação de dados de arquivos CNAB (ex: arquivos de retorno bancário). Permite:
 
-Buscar empresas por nome
-
-Isolar trechos por posição em segmentos específicos
-
-Exportar dados do segmento Q para JSON e XLSX
+- Buscar empresas por nome
+- Isolar trechos por posição em segmentos específicos
+- Exportar dados do segmento Q para JSON e XLSX
 
 ```bash
 node index.js
@@ -28,22 +26,22 @@ Exemplos:
   node index.js -f 21 -t 34 -s q
 ```
 
-# 1. Buscar nome da empresa (segmento Q)
+## 1. Buscar nome da empresa (segmento Q)
 ```bash
 node index.js --search "Transportadora"
 ```
 
-# 2. Buscar nome da empresa (segmento Q)
+## 2. Buscar nome da empresa (segmento Q)
 ```bash
 node ndex.js --export-json
 ```
 
-# 3. Exportar empresas do segmento Q para Excel (XLSX)
+## 3. Exportar empresas do segmento Q para Excel (XLSX)
 ```bash
 node ndex.js --export-xlsx
 ```
 
-# 4. Destacar trecho
+## 4. Destacar trecho
 ```bash
 node ndex.js --from 33 --to 73 --s Q
 ```
