@@ -33,28 +33,35 @@ async function main() {
     const linesData = content.split(/\r?\n/).filter(Boolean);
     const body = linesData.slice(2, -2);
 
+    const hasSearch = Boolean(argv.search);
+    const searchResults = hasSearch
+      ? searchByCompanyName(body, argv.search)
+      : [];
+
+    const linesForExport = hasSearch
+      ? searchResults.map(({ content }) => content)
+      : body;
+
+    const exportData = exportToJson(linesForExport);
+
     if (argv['export-json']) {
-      const exportData = exportToJson(body);
       const outputFile = path.resolve(process.cwd(), 'cnab_export.json');
       writeFileSync(outputFile, JSON.stringify(exportData, null, 2));
-      console.log(chalk.green(`\nExportação concluída: ${outputFile}`));
-      return;
+      console.log(chalk.green(`\nExportação JSON concluída: ${outputFile}`));
     }
 
     if (argv['export-xlsx']) {
-      const exportData = exportToJson(body);
       const outputFile = exportToXlsx(exportData);
       console.log(chalk.green(`\nExportação XLSX concluída: ${outputFile}`));
-      return;
     }
 
-    if (argv.search) {
-      const results = searchByCompanyName(body, argv.search);
-      if (results.length === 0) {
+    if (hasSearch) {
+      if (searchResults.length === 0) {
         console.log(chalk.red(`Nenhuma empresa encontrada com o termo: ${argv.search}`));
         return;
       }
-      printSearchResults(results, argv.from, argv.to);
+      printSearchResults(searchResults, argv.from, argv.to);
+
       return;
     }
 

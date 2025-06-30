@@ -34,6 +34,11 @@ const CLI_OPTIONS = {
       describe: 'exporta as empresas e endereços do segmento Q para JSON',
       type: 'boolean',
     },
+    exportXlsx: {
+      alias: 'export-xlsx',
+      describe: 'exporta as empresas e endereços do segmento Q para XLSX',
+      type: 'boolean',
+    },
   },
 };
 
@@ -44,10 +49,11 @@ export function parseArguments() {
     .check((args) => {
       const hasSearch = Boolean(args.search);
       const hasExportJson = Boolean(args['export-json']);
+      const hasExportXlsx = Boolean(args['export-xlsx']);
       const hasSegmentRange =
         args.from !== undefined && args.to !== undefined && args.segment !== undefined;
 
-      if (!hasSearch && !hasExportJson && !hasSegmentRange) {
+      if (!hasSearch && !hasExportJson && !hasExportXlsx && !hasSegmentRange) {
         throw new Error(
           'Informe --search, --export-json ou todos os parâmetros --from, --to e --segment'
         );
